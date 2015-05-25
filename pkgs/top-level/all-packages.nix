@@ -637,6 +637,23 @@ let
 
   setfile = callPackage ../os-specific/darwin/setfile { };
 
+  trv = callPackage ../development/tools/misc/trv {
+    inherit (ocamlPackages)
+    ocaml
+    findlib
+    camlp4
+    core
+    async
+    async_unix
+    async_extra
+    sexplib
+    async_shell
+    core_extended
+    async_find
+    cohttp
+    uri;
+   };
+
   install_name_tool = callPackage ../os-specific/darwin/install_name_tool { };
 
   xcodeenv = callPackage ../development/mobile/xcodeenv { };
