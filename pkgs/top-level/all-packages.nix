@@ -693,6 +693,23 @@ let
     pkgs_i686 = pkgsi686Linux;
   };
 
+  vrt = callPackage ../development/tools/misc/vrt {
+    inherit (ocamlPackages)
+    ocaml
+    findlib
+    camlp4
+    core
+    async
+    async_unix
+    async_extra
+    sexplib
+    async_shell
+    core_extended
+    async_find
+    cohttp
+    uri;
+   };
+
   inherit (androidenv) androidsdk_4_4 androidndk;
 
   aria2 = callPackage ../tools/networking/aria2 { };
