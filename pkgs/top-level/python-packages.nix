@@ -941,11 +941,11 @@ let
   };
 
   bcdoc = buildPythonPackage rec {
-    name = "bcdoc-0.14.0";
+    name = "bcdoc-0.15.0";
 
     src = pkgs.fetchurl {
       url = "https://pypi.python.org/packages/source/b/bcdoc/${name}.tar.gz";
-      sha256 = "1s2kdqs1n2mj7wq3w0pq30zs7vxq0l3abik2clqnc4hm2j7crbk8";
+      sha256 = "0ahpi5zj9cz4hiq4n7f0y8s8qbk2v1pm2jscclgryg5lzz757yf8";
     };
 
     buildInputs = with self; [ docutils six ];
@@ -1185,7 +1185,7 @@ let
       sha256 = "0y0rdxbiwm03zv6vpvapqilrird3h8ijz7xmb0j7ds5j4p6q3g24";
     };
 
-    disabled = pythonOlder "3.3";	# Library does not support versions older than 3.3
+    disabled = pythonOlder "3.3";       # Library does not support versions older than 3.3
   };
 
   iowait = buildPythonPackage rec {
@@ -1480,7 +1480,9 @@ let
     };
 
     propagatedBuildInputs =
-      [ self.dateutil
+      [ self.docutils
+        self.bcdoc
+        self.dateutil
         self.requests
         self.jmespath
       ];
@@ -5731,14 +5733,14 @@ let
 
     buildInputs = with self; [ nose ];
     propagatedBuildInputs = with self; [ paver feedparser sqlalchemy9 pyyaml rpyc
-	    beautifulsoup4 html5lib pyrss2gen pynzb progressbar jinja2 flask
-	    cherrypy requests dateutil_2_1 jsonschema python_tvrage tmdb3
+            beautifulsoup4 html5lib pyrss2gen pynzb progressbar jinja2 flask
+            cherrypy requests dateutil_2_1 jsonschema python_tvrage tmdb3
       guessit pathpy apscheduler ]
-	# enable deluge and transmission plugin support, if they're installed
-	++ stdenv.lib.optional (pkgs.config.pythonPackages.deluge or false)
-	    pythonpackages.deluge
-	++ stdenv.lib.optional (pkgs.transmission != null)
-	    self.transmissionrpc;
+        # enable deluge and transmission plugin support, if they're installed
+        ++ stdenv.lib.optional (pkgs.config.pythonPackages.deluge or false)
+            pythonpackages.deluge
+        ++ stdenv.lib.optional (pkgs.transmission != null)
+            self.transmissionrpc;
 
     meta = {
       homepage = http://flexget.com/;
@@ -14045,10 +14047,10 @@ let
         mv "$wrapper" "$wrapped"
 
         cat > "$wrapper" <<- EOF
-	export PATH="$PATH:\$PATH"
-	export VIRTUALENVWRAPPER_PYTHONPATH="$PYTHONPATH:$(toPythonPath $out)"
-	source "$wrapped"
-	EOF
+        export PATH="$PATH:\$PATH"
+        export VIRTUALENVWRAPPER_PYTHONPATH="$PYTHONPATH:$(toPythonPath $out)"
+        source "$wrapped"
+        EOF
 
         chmod -x "$wrapped"
         chmod +x "$wrapper"
