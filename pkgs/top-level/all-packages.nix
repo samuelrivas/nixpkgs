@@ -4172,6 +4172,8 @@ let
 
     acgtk = callPackage ../applications/science/logic/acgtk { };
 
+    afin = callPackage ../development/ocaml-modules/afin { };
+
     alcotest = callPackage ../development/ocaml-modules/alcotest {};
 
     ansiterminal = callPackage ../development/ocaml-modules/ansiterminal { };
