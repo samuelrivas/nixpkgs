@@ -1,5 +1,6 @@
 {stdenv, fetchurl, ocaml, findlib, camlp4, core, async, async_unix, re2,
-  async_extra, sexplib, async_shell, core_extended, async_find, cohttp, uri}:
+  async_extra, sexplib, async_shell, core_extended, async_find, cohttp, uri,
+  git}:
 
 let
   ocaml_version = (builtins.parseDrvName ocaml.name).version;
@@ -19,7 +20,7 @@ stdenv.mkDerivation {
   buildInputs = [ ocaml findlib camlp4 ];
   propagatedBuildInputs = [ core async async_unix
                             async_extra sexplib async_shell core_extended
-                            async_find cohttp uri re2 ];
+                            async_find cohttp uri re2 git ];
 
   createFindlibDestdir = true;
   dontStrip = true;
