@@ -1420,4 +1420,14 @@ self: super: {
     amqp = dontCheck super.amqp_0_19_1;
   };
 
+  # HsYAML-aeson depends on a more modern version of HsYAML than the one
+  # available in stackage's LTS 14.23
+  HsYAML-aeson = unmarkBroken (super.HsYAML-aeson.override {
+    HsYAML = self.HsYAML_0_2_1_0;
+  });
+
+  stylish-haskell = (unmarkBroken super.stylish-haskell).override {
+    HsYAML = self.HsYAML_0_2_1_0;
+  };
+
 } // import ./configuration-tensorflow.nix {inherit pkgs haskellLib;} self super
