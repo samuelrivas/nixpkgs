@@ -147,7 +147,7 @@ symlinkJoin {
     fi
 
     for d in $(grep -Poz "dynamic-library-dirs:\s*\K .+\n" $packageConfDir/*|awk '{print $2}'|sort -u); do
-      echo ln -s $d/*.dylib $dynamicLinksDir
+      echo "ln -s $d/*.dylib $dynamicLinksDir"
       ln -s $d/*.dylib $dynamicLinksDir
     done
     for f in $packageConfDir/*.conf; do
